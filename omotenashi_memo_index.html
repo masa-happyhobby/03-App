@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>おもてなしメモ｜接客・顧客メモ管理アプリ</title>
+  <meta name="description" content="おもてなしメモは、顧客メモと来店（面談）ログを端末内でまとめて管理できるアプリです。好み・NG・会話内容・重要度を記録し、次の接客をスムーズにします。" />
+  <meta name="keywords" content="顧客管理,接客,来店履歴,会話メモ,CRM,おもてなしメモ" />
+
+  <!-- OGP (SNS共有) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="おもてなしメモ｜接客・顧客メモ管理アプリ" />
+  <meta property="og:description" content="顧客メモと来店ログをまとめて管理。好み・NG・会話内容・重要度を記録して次の接客をスムーズに。" />
+  <!-- 公開後に絶対URLへ -->
+  <meta property="og:url" content="https://YOUR_GITHUB_PAGES_URL/" />
+  <meta property="og:image" content="https://YOUR_GITHUB_PAGES_URL/assets/icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    :root{
+      --bg:#0b0b10;
+      --card:#12121a;
+      --text:#f3f3f7;
+      --muted:#b8b8c6;
+      --line:rgba(255,255,255,.10);
+      --accent:#ff6aa9;
+      --accent2:#ffd1a3;
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --radius: 18px;
+      --max: 1040px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+      background: radial-gradient(900px 520px at 18% 8%, rgba(255,106,169,.22), transparent 60%),
+                  radial-gradient(800px 520px at 78% 18%, rgba(255,209,163,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+    a{color:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px;}
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,11,16,.55);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 0;
+      gap: 12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none;
+      font-weight:700;
+    }
+    .brand img{width:32px; height:32px; border-radius:10px; box-shadow: var(--shadow);}
+    .navlinks{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;}
+    .navlinks a{
+      text-decoration:none; color: var(--muted);
+      font-size:14px; padding:8px 10px; border-radius:12px;
+    }
+    .navlinks a:hover{background: rgba(255,255,255,.06); color: var(--text);}
+    .hero{
+      padding: 56px 0 26px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.3fr .9fr;
+      gap: 22px;
+      align-items:center;
+    }
+    @media (max-width: 860px){
+      .heroGrid{grid-template-columns:1fr; }
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .heroCard{padding: 22px 22px 20px;}
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      background: rgba(255,255,255,.03);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: 42px;
+      line-height:1.2;
+      letter-spacing: .2px;
+    }
+    @media (max-width: 520px){
+      h1{font-size:34px;}
+    }
+    .lead{color: var(--muted); font-size: 16px; margin: 0 0 16px;}
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:8px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      text-decoration:none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .btnPrimary{
+      background: linear-gradient(90deg, rgba(255,106,169,.95), rgba(255,209,163,.9));
+      color:#0b0b10;
+      border: none;
+    }
+    .btn:hover{transform: translateY(-1px);}
+    .note{color: var(--muted); font-size: 12.5px; margin-top: 10px;}
+
+    .preview{
+      padding: 18px;
+      display:flex; align-items:center; justify-content:center;
+      min-height: 320px;
+    }
+    .mock{
+      width:100%;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      position:relative;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+    }
+    .mockTop{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .mockBody{padding: 14px;}
+    .pill{
+      display:inline-flex; gap:6px; align-items:center;
+      border: 1px solid var(--line);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+      margin-right: 8px; margin-bottom: 8px;
+    }
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 18px 0 0;
+    }
+    @media (max-width: 900px){ .grid3{grid-template-columns:1fr;} }
+
+    section{padding: 26px 0;}
+    .sectionTitle{
+      font-size: 20px;
+      margin: 0 0 12px;
+      letter-spacing:.2px;
+    }
+    .muted{color: var(--muted);}
+    .features{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 900px){ .features{grid-template-columns:1fr;} }
+    .feature{padding: 16px;}
+    .feature h3{margin: 0 0 6px; font-size: 16px;}
+    .feature p{margin:0; color: var(--muted); font-size: 14px;}
+
+    .shots{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 900px){ .shots{grid-template-columns:1fr;} }
+    .shot{
+      padding: 14px;
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .ph{
+      width:100%;
+      aspect-ratio: 9 / 19.5;
+      border-radius: 16px;
+      border: 1px dashed rgba(255,255,255,.18);
+      background: rgba(255,255,255,.03);
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(255,255,255,.35);
+      font-size: 13px;
+      overflow:hidden;
+    }
+    .ph img{width:100%; height:100%; object-fit:cover; display:block;}
+    .shot .caption{color: var(--muted); font-size: 13px; margin:0;}
+    footer{
+      padding: 26px 0 40px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .split{
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    }
+    .small{font-size:12px;}
+    code{
+      background: rgba(255,255,255,.06);
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="#top" aria-label="おもてなしメモ">
+        <img src="assets/icon.png" alt="おもてなしメモ アイコン" onerror="this.style.display='none'" />
+        <span>おもてなしメモ</span>
+      </a>
+      <nav class="navlinks" aria-label="ページ内メニュー">
+        <a href="#features">機能</a>
+        <a href="#howto">使い方</a>
+        <a href="#screenshots">画面</a>
+        <a href="#privacy">プライバシー</a>
+        <a href="#support">サポート</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="container">
+    <section class="hero">
+      <div class="heroGrid">
+        <div class="card heroCard">
+          <div class="kicker">✨ 顧客メモ × 来店ログ</div>
+          <h1>接客の「覚えておきたい」を、<br>一つにまとめる。</h1>
+          <p class="lead">
+            <strong>おもてなしメモ</strong>は、顧客プロフィール・好み/NG・会話内容・重要度を記録し、
+            来店（面談）履歴として時系列で管理できるアプリです。
+            次の接客をスムーズにして、リピートにつなげます。
+          </p>
+
+          <div class="ctaRow">
+            <!-- App Store URLに差し替え -->
+            <a class="btn btnPrimary" href="https://apps.apple.com/app/idXXXXXXXXXX" target="_blank" rel="noopener">App Storeで見る</a>
+            <a class="btn" href="#privacy">プライバシー</a>
+            <a class="btn" href="#support">お問い合わせ</a>
+          </div>
+          <div class="note">
+            ※掲載URL・スクリーンショットは差し替えてご利用ください。
+          </div>
+        </div>
+
+        <div class="card preview" aria-label="アプリのイメージ">
+          <div class="mock">
+            <div class="mockTop">
+              <span>おもてなしメモ</span>
+              <span>Customer / Visit Log</span>
+            </div>
+            <div class="mockBody">
+              <div class="pill">⭐ 重要度</div>
+              <div class="pill">🏷 タグ</div>
+              <div class="pill">📝 会話メモ</div>
+              <div class="pill">🚫 NG</div>
+              <div class="pill">📅 来店ログ</div>
+
+              <div class="grid3">
+                <div class="card feature">
+                  <h3>顧客カルテ</h3>
+                  <p>好み・注意点・メモを一人ずつ整理。</p>
+                </div>
+                <div class="card feature">
+                  <h3>来店ログ</h3>
+                  <p>会った日・会話・次アクションを時系列で。</p>
+                </div>
+                <div class="card feature">
+                  <h3>端末内保存</h3>
+                  <p>入力データは端末内で管理（オフライン可）。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="features">
+      <h2 class="sectionTitle">主な機能</h2>
+      <div class="features">
+        <div class="card feature">
+          <h3>顧客プロフィール</h3>
+          <p>名前（ニックネーム）、仕事/属性、誕生日（任意）、メモなどを管理。</p>
+        </div>
+        <div class="card feature">
+          <h3>好み / NG の記録</h3>
+          <p>「好き」「避けたい」を整理して、次の接客に活かせます。</p>
+        </div>
+        <div class="card feature">
+          <h3>タグ & 重要度</h3>
+          <p>タグで分類、重要度で優先順位を把握。</p>
+        </div>
+        <div class="card feature">
+          <h3>来店（面談）ログ</h3>
+          <p>日付・会話メモ・次アクションを顧客に紐づけて保存。</p>
+        </div>
+        <div class="card feature">
+          <h3>オフライン利用</h3>
+          <p>ネットが無い場所でも入力・閲覧が可能。</p>
+        </div>
+        <div class="card feature">
+          <h3>シンプル設計</h3>
+          <p>「入力 → 見返す」に特化した、迷わないUI。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="howto">
+      <h2 class="sectionTitle">使い方</h2>
+      <div class="card" style="padding:16px;">
+        <ol class="muted" style="margin:0; padding-left: 18px;">
+          <li>顧客を追加します（名前・タグ・重要度など）。</li>
+          <li>「好み / NG / メモ」を入力します。</li>
+          <li>来店（面談）後にログを追加し、会話内容と次アクションを残します。</li>
+          <li>次回の来店前に見返して、スムーズな対応につなげます。</li>
+        </ol>
+        <p class="muted" style="margin:10px 0 0;">
+          例：<code>好み：ウイスキー / カラオケ</code>、<code>NG：辛い話題</code>、<code>次回：誕生日の話をする</code>
+        </p>
+      </div>
+    </section>
+
+    <section id="screenshots">
+      <h2 class="sectionTitle">スクリーンショット</h2>
+      <p class="muted" style="margin-top:0;">
+        以下の画像を <code>assets/screenshot-1.png</code> などに差し替えてください。
+      </p>
+
+      <div class="shots">
+        <div class="card shot">
+          <div class="ph">
+            <img src="assets/screenshot-1.png" alt="スクリーンショット1" onerror="this.remove(); this.parentElement.textContent='Screenshot 1 (assets/screenshot-1.png)'" />
+          </div>
+          <p class="caption">顧客一覧：タグと重要度で見やすく。</p>
+        </div>
+        <div class="card shot">
+          <div class="ph">
+            <img src="assets/screenshot-2.png" alt="スクリーンショット2" onerror="this.remove(); this.parentElement.textContent='Screenshot 2 (assets/screenshot-2.png)'" />
+          </div>
+          <p class="caption">顧客詳細：好み/NG/メモをまとめて管理。</p>
+        </div>
+        <div class="card shot">
+          <div class="ph">
+            <img src="assets/screenshot-3.png" alt="スクリーンショット3" onerror="this.remove(); this.parentElement.textContent='Screenshot 3 (assets/screenshot-3.png)'" />
+          </div>
+          <p class="caption">来店ログ：会話と次アクションを時系列で。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <h2 class="sectionTitle">プライバシー</h2>
+      <div class="card" style="padding:16px;">
+        <p class="muted" style="margin-top:0;">
+          おもてなしメモは、ユーザーが入力した情報（顧客メモ・タグ・来店ログ等）を<strong>端末内に保存</strong>して管理します。
+        </p>
+        <ul class="muted" style="margin:0; padding-left:18px;">
+          <li>入力データの外部送信：なし</li>
+          <li>第三者提供：なし</li>
+          <li>分析SDK・広告SDK：なし（※導入する場合はここを必ず更新）</li>
+        </ul>
+        <p class="muted" style="margin:10px 0 0;" class="small">
+          最終更新日：2026-01-31（必要に応じて更新してください）
+        </p>
+      </div>
+    </section>
+
+    <section id="support">
+      <h2 class="sectionTitle">サポート / お問い合わせ</h2>
+      <div class="card" style="padding:16px;">
+        <p class="muted" style="margin-top:0;">
+          不具合報告・要望は以下までお願いします。
+        </p>
+        <ul class="muted" style="margin:0; padding-left:18px;">
+          <li>メール：<a href="mailto:YOUR_SUPPORT_EMAIL@example.com">YOUR_SUPPORT_EMAIL@example.com</a></li>
+          <li>GitHub Issues：<a href="https://github.com/YOUR_ACCOUNT/YOUR_REPO/issues" target="_blank" rel="noopener">issues</a></li>
+        </ul>
+        <p class="muted" style="margin:10px 0 0;">
+          可能であれば「端末機種 / iOSバージョン / 再現手順」を添えてください。
+        </p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="split">
+      <div>© <span id="y"></span> おもてなしメモ</div>
+      <div class="small">This site is for app introduction and support.</div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</footer>
+</body>
+</html>
