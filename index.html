@@ -4,14 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>おもてなしメモ｜接客・顧客メモ管理アプリ</title>
-  <meta name="description" content="おもてなしメモは、顧客メモと来店（面談）ログを端末内でまとめて管理できるアプリです。好み・NG・会話内容・重要度を記録し、次の接客をスムーズにします。" />
-  <meta name="keywords" content="顧客管理,接客,来店履歴,会話メモ,CRM,おもてなしメモ" />
+
+  <!-- ver / release -->
+  <meta name="description" content="おもてなしメモは、顧客メモと来店（面談）ログを端末内でまとめて管理できるアプリです。好み・NG・会話内容・重要度を記録し、次の接客をスムーズにします。Pro（買い切り）で端末パスコードの画面ロックや高度な統計を解放できます。" />
+  <meta name="keywords" content="顧客管理,接客,来店履歴,会話メモ,CRM,おもてなしメモ,顧客メモ,来店ログ" />
+
+  <!-- App Store Smart App Banner (任意) -->
+  <meta name="apple-itunes-app" content="app-id=6758532524" />
 
   <!-- OGP (SNS共有) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="おもてなしメモ｜接客・顧客メモ管理アプリ" />
-  <meta property="og:description" content="顧客メモと来店ログをまとめて管理。好み・NG・会話内容・重要度を記録して次の接客をスムーズに。" />
-  <!-- 公開後に絶対URLへ -->
+  <meta property="og:description" content="顧客メモと来店ログをまとめて管理。好み・NG・会話内容・重要度を記録して次の接客をスムーズに。Pro（買い切り）で画面ロック・統計を解放。" />
   <meta property="og:url" content="https://masa-happyhobby.github.io/03-Omotenashi_memo/" />
   <meta property="og:image" content="https://masa-happyhobby.github.io/03-Omotenashi_memo/assets/icon.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -217,6 +221,18 @@
       border-radius: 8px;
       border: 1px solid rgba(255,255,255,.10);
     }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      white-space:nowrap;
+    }
   </style>
 </head>
 
@@ -231,8 +247,10 @@
       <nav class="navlinks" aria-label="ページ内メニュー">
         <a href="#features">機能</a>
         <a href="#howto">使い方</a>
+        <a href="#pro">Pro（課金）</a>
         <a href="#screenshots">画面</a>
         <a href="#privacy">プライバシー</a>
+        <a href="#terms">利用規約</a>
         <a href="#support">サポート</a>
       </nav>
     </div>
@@ -248,17 +266,21 @@
           <h1>接客の「覚えておきたい」を、<br>一つにまとめる。</h1>
           <p class="lead">
             <strong>おもてなしメモ</strong>は、顧客プロフィール・好み/NG・会話内容・重要度を記録し、
-            来店（面談）履歴として時系列で管理できるアプリです。
+            来店（面談）履歴を時系列で管理できるアプリです。
             次の接客をスムーズにして、リピートにつなげます。
           </p>
 
           <div class="ctaRow">
-            <!-- App Store URLに差し替え -->
             <a class="btn btnPrimary" href="https://apps.apple.com/app/id6758532524" target="_blank" rel="noopener">App Storeで見る</a>
+            <a class="btn" href="#pro">Pro（買い切り）</a>
             <a class="btn" href="#privacy">プライバシー</a>
             <a class="btn" href="#support">お問い合わせ</a>
           </div>
+
           <div class="note">
+            <span class="badge">Version: <strong>1.00.01</strong></span>
+            <span class="badge">データは端末内保存（オフライン可）</span>
+            <span class="badge">無料で基本機能利用OK / Proは任意</span>
           </div>
         </div>
 
@@ -286,7 +308,7 @@
                 </div>
                 <div class="card feature">
                   <h3>端末内保存</h3>
-                  <p>入力データは端末内で管理（オフライン可）。</p>
+                  <p>入力データは端末内で管理（外部送信なし）。</p>
                 </div>
               </div>
             </div>
@@ -297,7 +319,7 @@
     </section>
 
     <section id="features">
-      <h2 class="sectionTitle">主な機能</h2>
+      <h2 class="sectionTitle">主な機能（無料で使える範囲）</h2>
       <div class="features">
         <div class="card feature">
           <h3>顧客プロフィール</h3>
@@ -316,12 +338,12 @@
           <p>日付・会話メモ・次アクションを顧客に紐づけて保存。</p>
         </div>
         <div class="card feature">
-          <h3>オフライン利用</h3>
-          <p>ネットが無い場所でも入力・閲覧が可能。</p>
+          <h3>通知（任意）</h3>
+          <p>誕生日/フォローの通知を端末内のローカル通知で設定できます（外部送信なし）。</p>
         </div>
         <div class="card feature">
-          <h3>シンプル設計</h3>
-          <p>「入力 → 見返す」に特化した、迷わないUI。</p>
+          <h3>オフライン利用</h3>
+          <p>ネットが無い場所でも入力・閲覧が可能。</p>
         </div>
       </div>
     </section>
@@ -341,10 +363,44 @@
       </div>
     </section>
 
+    <section id="pro">
+      <h2 class="sectionTitle">Pro（アプリ内課金 / 買い切り）</h2>
+      <div class="card" style="padding:16px;">
+        <p class="muted" style="margin-top:0;">
+          Proは<strong>任意の買い切り課金</strong>です。無料版でも顧客メモ・来店ログの基本機能は利用できます。
+          価格はApp Storeの商品ページでご確認ください。
+        </p>
+        <div class="features" style="margin-top:12px;">
+          <div class="card feature">
+            <h3>画面ロック（端末パスコード）</h3>
+            <p>
+              アプリ復帰時に端末のパスコード認証で保護できます。<br>
+              <strong>Face IDは使用しません</strong>（端末の認証方式に従います）。
+            </p>
+          </div>
+          <div class="card feature">
+            <h3>高度な統計</h3>
+            <p>
+              期間フィルタ（7/30/90日・全期間）と、タグ別ランキングを表示します。
+            </p>
+          </div>
+          <div class="card feature">
+            <h3>テンプレ（今後拡張）</h3>
+            <p>
+              お礼・次回提案のテンプレなど、運用をラクにする機能を順次追加予定です。
+            </p>
+          </div>
+        </div>
+        <ul class="muted" style="margin:12px 0 0; padding-left:18px;">
+          <li>購入はApp Storeの決済を通じて行われます。</li>
+          <li>機種変更時はアプリ内の「購入を復元」をご利用ください。</li>
+          <li>課金は任意です。無料版の基本機能が使えなくなることはありません。</li>
+        </ul>
+      </div>
+    </section>
+
     <section id="screenshots">
       <h2 class="sectionTitle">スクリーンショット</h2>
-      <p class="muted" style="margin-top:0;">
-      </p>
 
       <div class="shots">
         <div class="card shot">
@@ -378,10 +434,27 @@
           <li>入力データの外部送信：なし</li>
           <li>第三者提供：なし</li>
           <li>分析SDK・広告SDK：なし</li>
+          <li>通知：誕生日/フォロー等は端末内のローカル通知（許可した場合のみ）</li>
+          <li>課金：App Storeの決済を使用（当サイト/アプリでカード情報等を取得しません）</li>
         </ul>
-        <p class="muted" style="margin:10px 0 0;" class="small">
-          最終更新日：2026-01-31
+        <p class="muted small" style="margin:10px 0 0;">
+          データ削除：アプリを削除すると端末内データは削除されます。<br>
+          最終更新日：2026-02-05
         </p>
+      </div>
+    </section>
+
+    <section id="terms">
+      <h2 class="sectionTitle">利用規約</h2>
+      <div class="card" style="padding:16px;">
+        <p class="muted" style="margin-top:0;">
+          本アプリの利用には、App Storeにて適用される規約に従います。<br>
+          特に明記のない限り、本アプリの利用条件はAppleの標準利用許諾契約（Standard EULA）に準拠します。
+        </p>
+        <ul class="muted" style="margin:0; padding-left:18px;">
+          <li>Pro（買い切り）は任意です。無料版でも基本機能を利用できます。</li>
+          <li>購入の復元はアプリ内から実行できます。</li>
+        </ul>
       </div>
     </section>
 
@@ -392,11 +465,11 @@
           不具合報告・要望は以下までお願いします。
         </p>
         <ul class="muted" style="margin:0; padding-left:18px;">
-          <li>メール：<a href="hobby-happymylife-info@hobby-happymylife.com">hobby-happymylife-info@hobby-happymylife.com</a></li>
+          <li>メール：<a href="mailto:hobby-happymylife-info@hobby-happymylife.com">hobby-happymylife-info@hobby-happymylife.com</a></li>
           <li>GitHub Issues：<a href="https://github.com/masa-happyhobby/03-Omotenashi_memo/issues" target="_blank" rel="noopener">issues</a></li>
         </ul>
         <p class="muted" style="margin:10px 0 0;">
-          可能であれば「端末機種 / iOSバージョン / 再現手順」を添えてください。
+          可能であれば「端末機種 / iOSバージョン / 再現手順 / スクリーンショット」を添えてください。
         </p>
       </div>
     </section>
